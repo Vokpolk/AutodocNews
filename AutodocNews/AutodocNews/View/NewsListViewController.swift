@@ -125,8 +125,8 @@ class NewsListViewController: UIViewController {
         
         viewModel.$errorMessage
             .compactMap { $0 }
-            .sink { message in
-                print("Ошибка: \(message)")
+            .sink { [weak self] message in
+                self?.showErrorAlert(message: message)
             }
             .store(in: &cancellables)
         
@@ -147,6 +147,12 @@ class NewsListViewController: UIViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(news)
         dataSource?.apply(snapshot, animatingDifferences: true)
+    }
+    
+    private func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(alert, animated: true)
     }
 }
 

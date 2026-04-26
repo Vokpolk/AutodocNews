@@ -60,7 +60,6 @@ final class NetworkService {
         do {
             return try JSONDecoder().decode(NewsResponse.self, from: data)
         } catch {
-            print("Decoding error: \(error)")
             throw NetworkError.decodingError
         }
     }

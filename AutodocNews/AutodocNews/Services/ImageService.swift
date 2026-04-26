@@ -34,7 +34,6 @@ final class ImageService {
             cache.setObject(image, forKey: urlString as NSString)
             return image
         } catch {
-            print("Ошибка загрузки картинки: \(error)")
             return nil
         }
     }
