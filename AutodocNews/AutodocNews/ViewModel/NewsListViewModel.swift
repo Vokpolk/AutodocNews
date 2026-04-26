@@ -15,15 +15,18 @@ final class NewsListViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     
+    // MARK: - Private Properties
     private let networkService: NetworkService
     private var currentPage = 1
     private let pageSize = 15
     private var canLoadMore = true
     
+    // MARK: - Initializers
     init(networkService: NetworkService) {
         self.networkService = networkService
     }
     
+    // MARK: - Public Methods
     func loadNews() async {
         guard !isLoading && canLoadMore else { return }
         

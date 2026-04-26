@@ -7,18 +7,22 @@
 
 import Foundation
 
-struct NewsResponse: Decodable {
+enum Section: Hashable, Sendable {
+    case main
+}
+
+struct NewsResponse: Decodable, Sendable {
     let news: [NewsItem]
     let totalCount: Int
 }
 
-struct NewsItem: Decodable {
+struct NewsItem: Decodable, Hashable, Sendable {
     let id: Int
     let title: String
     let description: String
     let publishedDate: String
     let url: String
     let fullUrl: String
-    let titleImageUrl: String
+    let titleImageUrl: String?
     let categoryType: String
 }

@@ -8,9 +8,7 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
-
 
     func scene(
         _ scene: UIScene,
@@ -21,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         self.window = window
         
-        let rootVC = NewsListViewController()
+        let rootVC = NewsListViewController(viewModel: NewsListViewModel(networkService: NetworkService()))
         let navController = UINavigationController(rootViewController: rootVC)
         
         window.rootViewController = navController
